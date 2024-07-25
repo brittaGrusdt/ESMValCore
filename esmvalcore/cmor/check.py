@@ -693,18 +693,20 @@ class CMORCheck():
             freq = freq[:-2]
         if freq in ['mon', 'mo']:
             dates = coord.units.num2date(coord.points)
-            
-            # months are consecutive numbers of 1 to 12, repeated as often as there are years
-            months_years = list(zip(*[(date.month, date.year) for date in dates]))
-            nb_years = len(months_years[0])//12
-            months_expected = list(range(1, 13)) * nb_years
-            
-            years = months_years[1]
-            years = [years[i : i + 12] for i in range(0, len(years), 12)]
-            # allow gaps between years so e.g. months 1..12 of year 1950 followed by months 1..12 of year > 1951
-            if months_expected != list(months_years[0]) or not all([len(Counter(y)) == 1 for y in years]):
-                msg = '{}: Frequency {} does not match input data'
-                self.report_error(msg, var_name, freq)
+
+            for i in range(len(coord.points) - 1):
+                first = dates[i]
+                second = dates[i + 1]
+                second_month = first.month + 1
+                second_year = first.year
+                if second_month == 13:
+                    second_month = 1
+                    second_year += 1
+                if second_month != second.month or \
+                   second_year != second.year:
+                    msg = '{}: Frequency {} does not match input data'
+                    self.report_error(msg, var_name, freq)
+                    break
 
         elif freq == 'yr':
             dates = coord.units.num2date(coord.points)
