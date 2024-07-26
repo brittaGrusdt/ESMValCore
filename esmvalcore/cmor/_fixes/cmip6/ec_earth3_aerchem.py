@@ -18,9 +18,4 @@ class AllVars(Fix):
                     decimals=3,
                     coord_names=['latitude'],
                 )
-                if (cube.attributes.get('experiment_id', '') == 'historical'
-                        and cube.coords('time')):
-                    time_coord = cube.coord('time')
-                    time_coord.units = cf_units.Unit(time_coord.units.origin,
-                                                     'proleptic_gregorian')
         return cubes
