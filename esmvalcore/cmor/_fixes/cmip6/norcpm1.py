@@ -12,7 +12,7 @@ class AllVars(Fix):
     def fix_metadata(self, cubes):
         """Fix metadata."""
         for cube in cubes:
-            if cube.attributes.get('variant_label', '') == 'r11i1p1f1':
+            if cube.attributes.get('variant_label', '') in ['r1i1p1f1', 'r11i1p1f1']:
                 round_coordinates(
                     [cube],
                     decimals=3,
