@@ -13,7 +13,7 @@ class Tos(Fix):
         dim1 = "cell index along first dimension"
         dim2 = "cell index along second dimension"
         for cube in cubes:
-            if cube.attributes.get("variant_label", "") == "r2i1p1f1":
+            if cube.attributes.get("variant_label", "") in ["r2i1p1f1", "r3i1p1f1"]:
                 cube.dim_coords[1].rename(dim2)
                 cube.dim_coords[2].rename(dim1)
 
