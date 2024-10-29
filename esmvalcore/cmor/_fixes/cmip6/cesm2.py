@@ -1,8 +1,8 @@
 """Fixes for CESM2 model."""
 
 from shutil import copyfile
-import iris
 
+import iris
 import numpy as np
 from netCDF4 import Dataset
 
@@ -16,19 +16,21 @@ from ..shared import (
     fix_ocean_depth_coord,
 )
 
+
 class Msftmz(Fix):
-    """Fixes for discrete DimCoord, code taken from: https://github.com/ESMValGroup/ESMValCore/compare/main...dhohn:fix_datasets_amoc?expand=1#:~:text=class%20Msftmz(,super().fix_metadata(cubes)"""
+    """Fixes for discrete DimCoord, code taken from: https://github.com/ESMValGroup/ESMValCore/compare/main...dhohn:fix_datasets_amoc?expand=1#:~:text=class%20Msftmz(,super().fix_metadata(cubes)."""
 
     @staticmethod
     def transform_region_coord(coord: iris.coords.DimCoord) -> iris.coords.AuxCoord:
-        """transform a DimCoord with indexes as points to AuxCoord with names as points
+        """Transform a DimCoord with indexes as points to AuxCoord with names as points.
+
         Parameters
         ----------
         coord: iris.coords.DimCoord
+
         Returns
         -------
         iris.coords.AuxCoord
-        
         """
         # parses string like: 'atlantic_arctic_ocean=0, indian_pacific_ocean=1, global_ocean=2'
         lookup = { int(p[1]):p[0] for p in map(lambda x: x.split("="), coord.attributes['requested'].split(",")) }
