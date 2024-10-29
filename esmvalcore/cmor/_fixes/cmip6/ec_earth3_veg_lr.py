@@ -1,7 +1,6 @@
 """Fixes for EC-Earth3-Veg-LR model."""
 
 from ..common import OceanFixGrid
-from ..fix import Fix
 
 Siconc = OceanFixGrid
 
