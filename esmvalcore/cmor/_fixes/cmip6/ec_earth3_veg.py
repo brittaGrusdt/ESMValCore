@@ -4,22 +4,7 @@ import cf_units
 import numpy as np
 
 from ..fix import Fix
-from ..shared import round_coordinates
 
-
-class AllVars(Fix):
-    """Fixes for all variables."""
-
-    def fix_metadata(self, cubes):
-        """Fix metadata."""
-        for cube in cubes:
-            if cube.attributes.get('variant_label', '') == 'r11i1p1f1':
-                round_coordinates(
-                    [cube],
-                    decimals=3,
-                    coord_names=['latitude'],
-                )
-        return cubes
 
 class Siconca(Fix):
     """Fixes for siconca."""
