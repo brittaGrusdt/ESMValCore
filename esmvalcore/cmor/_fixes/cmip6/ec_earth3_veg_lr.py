@@ -9,7 +9,6 @@ Siconc = OceanFixGrid
 class Tos(Fix):
     def fix_metadata(self, cubes):
         """Fix metadata."""
-
         dim1 = "cell index along first dimension"
         dim2 = "cell index along second dimension"
         for cube in cubes:
