@@ -9,7 +9,6 @@ class AllVars(Fix):
 
     def fix_metadata(self, cubes):
         """Fix metadata."""
-
         ensembles = ['r' + str(i) + 'i1p1f1' for i in range(1, 31)]
         for cube in cubes:
             if cube.attributes.get('variant_label', '') in ensembles:
