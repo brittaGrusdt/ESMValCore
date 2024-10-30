@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 import logging
-import warnings
-from collections import namedtuple, Counter
+from collections import namedtuple
 from collections.abc import Callable
 from enum import IntEnum
 from functools import cached_property
