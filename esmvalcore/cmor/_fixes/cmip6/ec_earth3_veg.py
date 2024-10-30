@@ -6,6 +6,7 @@ import numpy as np
 from ..fix import Fix
 from ..shared import round_coordinates
 
+
 class AllVars(Fix):
     """Fixes for all variables."""
 
