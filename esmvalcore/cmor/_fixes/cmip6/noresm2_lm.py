@@ -80,3 +80,26 @@ class Siconc(Fix):
             longitude.bounds = np.round(longitude.core_bounds(), 4)
 
         return cubes
+
+
+class Msftmz(Fix):
+    def fix_metadata(self, cubes):
+        """Fix metadata.
+
+        The dtype of the coordinate 'region' varies for different years in the 
+        dataset (e.g., 1909 vs. 1910). This fix sets the dtype of the values 
+        of the AuxCoord 'region' to '<U1024'. 
+
+        Parameters
+        ----------
+        cubes: iris.cube.CubeList
+            Input cubes to fix.
+
+        Returns
+        -------
+        iris.cube.CubeList
+        """
+        for cube in cubes:
+            coord_region = cube.coord('region').points
+            cube.coord('region').points = coord_region.astype('<U1024')
+        return cubes
