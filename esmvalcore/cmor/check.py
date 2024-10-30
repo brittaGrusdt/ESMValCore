@@ -707,7 +707,6 @@ class CMORCheck:
             freq = freq[:-2]
         if freq in ["mon", "mo"]:
             dates = coord.units.num2date(coord.points)
-
             for i in range(len(coord.points) - 1):
                 first = dates[i]
                 second = dates[i + 1]
